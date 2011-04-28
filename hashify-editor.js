@@ -461,8 +461,11 @@
       container = el.parentNode;
       container.insertBefore(preview, el.nextSibling);
       container.insertBefore(toolbar, el.nextSibling);
-      container.className =
-        (container.className? ' ': '') + classNamePrefix;
+      if (container.className) {
+        container.className += ' ' + classNamePrefix;
+      } else {
+        container.className = classNamePrefix;
+      }
     }
 
   };
