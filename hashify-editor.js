@@ -29,18 +29,18 @@
 
     slice = Array.prototype.slice,
 
-    // Curry-free binding. Borrows heavily from the `_.bind` function
-    // in [Underscore.js](http://documentcloud.github.com/underscore/).
+    // Copied from [Underscore.js](http://documentcloud.github.com/underscore/).
     bind = function (func, obj) {
-      if (nativeBind) {
+      if (func.bind === nativeBind && nativeBind) {
         return nativeBind.apply(func, slice.call(arguments, 1));
       }
+      var args = slice.call(arguments, 2);
       return function () {
-        return func.apply(obj, slice.call(arguments));
+        return func.apply(obj, args.concat(slice.call(arguments)));
       };
     },
 
-    createButton_ = function (text, identifier, handler) {
+    createButton_ = function (callback, text, identifier, handler) {
       var
         a = document.createElement('a'),
         li = document.createElement('li');
@@ -48,7 +48,11 @@
       a.href = '#' + text.toLowerCase().replace(/ /g, '-');
       a.className = classNamePrefix + '-' + identifier;
       a.innerHTML = text;
-      a.onclick = handler;
+      a.onclick = function (event) {
+        handler(event);
+        callback();
+        return false;
+      };
       li.appendChild(a);
       this.appendChild(li);
       return a;
@@ -317,7 +321,7 @@
       return decodeURIComponent(window.escape(window.atob(text)));
     },
 
-    editor: function (id, preview) {
+    editor: function (id, preview, callback_) {
       var
         container,
         createButton,
@@ -330,7 +334,7 @@
 
       toolbar = document.createElement('ul');
       toolbar.className = classNamePrefix + '-toolbar';
-      createButton = bind(createButton_, toolbar);
+      createButton = bind(createButton_, toolbar, bind(callback_ || function () {}, el));
 
       resolve = bind(resolve_, editor);
 
