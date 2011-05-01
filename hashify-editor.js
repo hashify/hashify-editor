@@ -317,13 +317,12 @@
       return decodeURIComponent(window.escape(window.atob(text)));
     },
 
-    editor: function (id) {
+    editor: function (id, preview) {
       var
         container,
         createButton,
         editor = new Editor(id),
         el = editor.el,
-        preview,
         resolve,
         toolbar;
 
@@ -447,19 +446,21 @@
           return false;
         }
       );
-      preview = document.createElement('a');
-      preview.href = '#preview';
-      preview.className = classNamePrefix + '-preview';
-      preview.innerHTML = 'Preview at hashify.me';
-      preview.onclick = function () {
-        window.open(
-          'http://hashify.me/' + Hashify.encode(el.value),
-          'hashify.me'
-        );
-        return false;
-      };
       container = el.parentNode;
-      container.insertBefore(preview, el.nextSibling);
+      if (preview !== false) {
+        preview = document.createElement('a');
+        preview.href = '#preview';
+        preview.className = classNamePrefix + '-preview';
+        preview.innerHTML = 'Preview at hashify.me';
+        preview.onclick = function () {
+          window.open(
+            'http://hashify.me/' + Hashify.encode(el.value),
+            'hashify.me'
+          );
+          return false;
+        };
+        container.insertBefore(preview, el.nextSibling);
+      }
       container.insertBefore(toolbar, el.nextSibling);
       if (container.className) {
         container.className += ' ' + classNamePrefix;
