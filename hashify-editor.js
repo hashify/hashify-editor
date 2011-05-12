@@ -127,7 +127,7 @@
               text = (
                 (/^__/.test(after) || /^_/.test(after) && /_$/.test(before))?
                   null:
-                  /__$/.test(before)?
+                  /_$/.test(before)?
                     '_':
                     /(^|[^_])_[^_]+\b$/.test(before)?
                       /^_/.test(after)?'':'_':
