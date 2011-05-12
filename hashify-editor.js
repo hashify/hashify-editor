@@ -131,7 +131,7 @@
                     '_':
                     /(^|[^_])_[^_]+\b$/.test(before)?
                       /^_/.test(after)?'':'_':
-                      /^\w/.test(after)?'_':'__'
+                      /^\S/.test(after)?'_':'__'
               )
             ) this.set(before + text + after);
             break;
