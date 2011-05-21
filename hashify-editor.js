@@ -40,6 +40,11 @@
       };
     },
 
+    blockquote_ = function () {
+      this.set(new Selection(this, ' {0,3}>[ \\t]*', '> ').render());
+      return false;
+    },
+
     createButton_ = function (callback, text, identifier, handler) {
       var
         a = document.createElement('a'),
@@ -141,8 +146,8 @@
         this.el.setSelectionRange(position, position);
         event.preventDefault();
       }
-      else if (text && chr === '#') {
-        bind(heading_, this)();
+      else if (text && /[#>]/.test(chr)) {
+        bind(chr === '#'? heading_: blockquote_, this)();
         event.preventDefault();
       }
     },
@@ -398,10 +403,7 @@
       createButton(
         'Blockquote',
         'blockquote',
-        function () {
-          editor.set(new Selection(editor, ' {0,3}>[ \\t]*', '> ').render());
-          return false;
-        }
+        bind(blockquote_, editor)
       );
       createButton(
         'Code Sample',
