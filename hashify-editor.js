@@ -143,7 +143,7 @@
           case '*':
             return;
         }
-        this.el.setSelectionRange(position, position);
+        this.range(position);
       }
       else if (text && /[#>]/.test(chr)) {
         bind(chr === '#'? heading_: blockquote_, this)();
@@ -292,6 +292,10 @@
         id; // assume `id` to be a DOM node
   }
 
+  Editor.prototype.range = function (start, end) {
+    this.el.setSelectionRange(start, end || start);
+  };
+
   Editor.prototype.set = function (text, start, end) {
     var
       el = this.el,
@@ -313,7 +317,7 @@
     el.scrollTop = position;
 
     if (start !== undef) {
-      el.setSelectionRange(start, end);
+      this.range(start, end);
     }
     el.focus();
   };
