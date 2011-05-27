@@ -144,12 +144,14 @@
             return;
         }
         this.el.setSelectionRange(position, position);
-        event.preventDefault();
       }
       else if (text && /[#>]/.test(chr)) {
         bind(chr === '#'? heading_: blockquote_, this)();
-        event.preventDefault();
       }
+      else {
+        return;
+      }
+      event.preventDefault();
     },
 
     resolve_ = function (reSelection, reBefore, reAfter, open, close) {
