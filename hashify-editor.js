@@ -263,15 +263,13 @@
   };
 
   Selection.prototype.render = function () {
-    var
-      matches = this.beforeRegex.exec(this.before),
-      offset = 0, start, text, value;
+    var offset = 0, start, text, value;
 
-    if (matches) {
+    if (this.beforeRegex.test(this.before)) {
       this.before = this.before.replace(this.beforeRegex, '');
       this.unprefix();
     }
-    else if (matches = this.textRegex.exec(/^.*$/m.exec(this.text)[0])) {
+    else if (this.textRegex.test(/^.*$/m.exec(this.text)[0])) {
       this.unprefix();
     }
     else {
