@@ -263,13 +263,20 @@
   };
 
   Selection.prototype.render = function () {
-    var offset = 0, start, text, value;
+    var offset = 0, start, text, that = this, value;
 
-    if (this.beforeRegex.test(this.before)) {
-      this.before = this.before.replace(this.beforeRegex, '');
-      this.unprefix();
-    }
-    else if (this.textRegex.test(/^.*$/m.exec(this.text)[0])) {
+    // Expand the selection to encompass the text
+    // that precedes it if it makes sense to do so.
+    this.before =
+      this.before.replace(
+        this.beforeRegex,
+        function (match) {
+          that.text = match + that.text;
+          return '';
+        }
+      );
+
+    if (this.textRegex.test(/^.*$/m.exec(this.text)[0])) {
       this.unprefix();
     }
     else {
