@@ -154,7 +154,7 @@
         }
         this.range(position);
       }
-      else if (text && /[#>]/.test(chr)) {
+      else if (text.length > 1 && /[#>]/.test(chr)) {
         bind(chr === '#'? heading_: blockquote_, this)();
       }
       else {
