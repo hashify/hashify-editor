@@ -29,6 +29,11 @@
 
     slice = Array.prototype.slice,
 
+    addEvent = function (el, type, handler) {
+      if (el.addEventListener) el.addEventListener(type, handler, false);
+      else if (el.attachEvent) el.attachEvent('on'+type, handler);
+    },
+
     // Copied from [Underscore.js](http://documentcloud.github.com/underscore/).
     bind = function (func, obj) {
       if (func.bind === nativeBind && nativeBind) {
@@ -294,10 +299,24 @@
   };
 
   function Editor(id) {
-    this.el =
-      typeof id === 'string'?
-        document.getElementById(id):
-        id; // assume `id` to be a DOM node
+    var
+      editor = this,
+      el = this.el =
+        typeof id === 'string'?
+          document.getElementById(id):
+          id; // assume `id` to be a DOM node
+
+    addEvent(el, 'keydown', function (event) {
+      event || (event = window.event);
+      if (event.altKey && event.keyCode === 9) { // ⌥⇥
+        var
+          selection = new Selection(editor),
+          before = selection.before + ____;
+
+        editor.set(before + selection.after, before.length);
+        event.preventDefault();
+      }
+    });
   }
 
   Editor.prototype.range = function (start, end) {
