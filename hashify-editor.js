@@ -415,7 +415,11 @@
         'Code Sample',
         'pre-code',
         function () {
-          editor.set(new Selection(editor, '( {4}|\t)', ____).render());
+          var selection = new Selection(editor, '(?: {4}|\\t)', ____);
+          selection.unprefix = function () {
+            this.text = this.text.replace(/^ {4}|^\t/gm, '');
+          };
+          editor.set(selection.render());
           return false;
         }
       );
