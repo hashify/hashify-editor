@@ -232,8 +232,8 @@
       b = this.before,
       a = this.after;
 
-    /((\r?\n){2}|^\s*)$/.test(b) || (this.before = b.replace(/\s*$/, '\n\n'));
-    /^((\r?\n){2}|\s*$)/.test(a) || (this.after  = a.replace(/^\s*/, '\n\n'));
+    /(\r?\n){2}$|^\s*$/.test(b) || (this.before = b.replace(/\s*$/, '\n\n'));
+    /^(\r?\n){2}|^\s*$/.test(a) || (this.after  = a.replace(/^\s*/, '\n\n'));
 
     return this;
   };
