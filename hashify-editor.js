@@ -276,7 +276,10 @@
         }
       );
 
-    if (this.textRegex.test(/^.*$/m.exec(this.text)[0])) {
+    if (
+      this.fullTextRegex && this.fullTextRegex.test(this.text) ||
+      !this.fullTextRegex && this.textRegex.test(/^.*$/m.exec(this.text)[0])) {
+
       this.unprefix();
     }
     else {
@@ -421,6 +424,7 @@
         'pre-code',
         function () {
           var selection = new Selection(editor, '(?: {4}|\\t)', ____);
+          selection.fullTextRegex = /^(?:(?: {4}|\t).*\r?\n?)+$/;
           selection.unprefix = function () {
             this.text = this.text.replace(/^ {4}|^\t/gm, '');
           };
