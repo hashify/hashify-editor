@@ -46,7 +46,11 @@
     },
 
     blockquote_ = function () {
-      this.set(new Selection(this, ' {0,3}>[ \\t]*', '> ').render());
+      var selection = new Selection(this, ' {0,3}>[ \\t]*', '> ');
+      selection.unprefix = function () {
+        this.text = this.text.replace(/^ {0,3}> ?/gm, '');
+      };
+      this.set(selection.render());
       return false;
     },
 
