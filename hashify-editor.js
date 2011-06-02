@@ -315,9 +315,29 @@
       if (event.altKey && event.keyCode === 9) { // ⌥⇥
         var
           selection = new Selection(editor),
-          before = selection.before + ____;
+          before = selection.before,
+          after = selection.after,
+          start = before.length,
+          text = selection.text,
+          len = text.length;
 
-        editor.set(before + selection.after, before.length);
+        if (text) {
+          editor.set(
+            before +
+            text.replace(
+              /^(?=[\s\S]).*/gm,
+              function (match) {
+                len += 4; // ____.length === 4
+                return ____ + match;
+              }
+            ) +
+            after,
+            start,
+            start + len
+          );
+        } else {
+          editor.set(before + ____ + after, start + 4); // ____.length === 4
+        }
         event.preventDefault();
       }
     });
