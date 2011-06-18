@@ -57,9 +57,11 @@
     createButton_ = function (callback, text, identifier, handler) {
       var
         a = document.createElement('a'),
-        li = document.createElement('li');
+        li = document.createElement('li'),
+        title = text.toLowerCase();
 
-      a.href = '#' + text.toLowerCase().replace(/ /g, '-');
+      a.setAttribute('data-title', title);
+      a.href = title.replace(/ /g, '-');
       a.className = classNamePrefix + '-' + identifier;
       a.innerHTML = text;
       a.onclick = function (event) {
@@ -463,7 +465,7 @@
         bind(blockquote_, editor)
       );
       createButton(
-        'Code Sample',
+        'Code Sample',
         'pre-code',
         function () {
           var selection = new Selection(editor, '(?: {4}|\\t)', ____);
@@ -476,7 +478,7 @@
         }
       );
       createButton(
-        'Numbered List',
+        'Numbered List',
         'ol',
         function () {
           editor.set(new Selection(editor, ' {0,3}\\d+[.][ \\t]*', ____, ' 1. ').render());
@@ -484,7 +486,7 @@
         }
       );
       createButton(
-        'Bulleted List',
+        'Bulleted List',
         'ul',
         function () {
           editor.set(new Selection(editor, ' {0,3}[*+-][ \\t]*', ____, '  - ').render());
@@ -497,7 +499,7 @@
         bind(heading_, editor)
       );
       createButton(
-        'Horizontal Rule',
+        'Horizontal Rule',
         'hr',
         function () {
           var

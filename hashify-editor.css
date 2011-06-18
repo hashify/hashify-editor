@@ -65,6 +65,7 @@
   background: #ddd;
   padding: 4px 8px 6px;
   text-align: center;
+  content: attr(data-title);
   font: 12px/1 "Lucida Grande", "Lucida Sans Unicode", sans-serif;
   color: #666;
   text-indent: 0;
@@ -74,37 +75,6 @@
 .hashify-editor-toolbar>li>a:focus:after,
 .hashify-editor-toolbar>li>a:hover:after {
   display: inline-block;
-}
-
-.hashify-editor-strong:after {
-  content: "strong";
-}
-.hashify-editor-em:after {
-  content: "emphasis";
-}
-.hashify-editor-img:after {
-  content: "image";
-}
-.hashify-editor-a:after {
-  content: "hyperlink";
-}
-.hashify-editor-blockquote:after {
-  content: "blockquote";
-}
-.hashify-editor-pre-code:after {
-  content: "code sample";
-}
-.hashify-editor-ol:after {
-  content: "numbered list";
-}
-.hashify-editor-ul:after {
-  content: "bulleted list";
-}
-.hashify-editor-h1:after {
-  content: "heading";
-}
-.hashify-editor-hr:after {
-  content: "horizontal rule";
 }
 
 .hashify-editor-preview {
