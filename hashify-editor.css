@@ -39,8 +39,12 @@
 
 .hashify-editor-toolbar>li>a:focus,
 .hashify-editor-toolbar>li>a:hover {
-  background-color: #ccc;
+  margin-top: -1px;
   outline: none;
+}
+
+.hashify-editor-toolbar>li>a:active {
+  margin-top: 0;
 }
 
 .hashify-editor-em          {                    background-position:  -24px; }
@@ -53,28 +57,42 @@
 .hashify-editor-h1          { margin-left: 12px; background-position: -192px; }
 .hashify-editor-hr          {                    background-position: -216px; }
 
+.hashify-editor-toolbar>li>a:before {
+  left: -39px;
+  top: -23px;
+  width: 100px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  text-indent: 0;
+  content: attr(data-title);
+  font: 12px/1.75 "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  color: #666;
+}
+
+.hashify-editor-toolbar>li>a:after {
+  left: 9px;
+  top: 0;
+  border: 3px solid transparent;
+  border-top-color: #ccc;
+  content: "";
+}
+
+.hashify-editor-toolbar>li>a:before,
 .hashify-editor-toolbar>li>a:after {
   position: absolute;
-  left: 24px;
-  top: 0;
   display: none;
-  -webkit-border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  border-radius: 0 3px 3px 0;
-  border: 1px solid #ccc;
-  background: #ddd;
-  padding: 4px 8px 6px;
-  text-align: center;
-  content: attr(data-title);
-  font: 12px/1 "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-  color: #666;
-  text-indent: 0;
   z-index: 1;
 }
 
+.hashify-editor-toolbar>li>a:focus:before,
+.hashify-editor-toolbar>li>a:hover:before,
 .hashify-editor-toolbar>li>a:focus:after,
 .hashify-editor-toolbar>li>a:hover:after {
-  display: inline-block;
+  display: block;
 }
 
 .hashify-editor-preview {
