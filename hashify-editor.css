@@ -89,10 +89,14 @@
 }
 
 .hashify-editor-toolbar>li>a:focus:before,
+.hashify-editor-toolbar>li>a:focus:after {
+  display: block;
+}
+
 .hashify-editor-toolbar>li>a:hover:before,
-.hashify-editor-toolbar>li>a:focus:after,
 .hashify-editor-toolbar>li>a:hover:after {
   display: block;
+  z-index: 2;
 }
 
 .hashify-editor-preview {
