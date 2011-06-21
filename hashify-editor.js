@@ -74,6 +74,10 @@
       return a;
     },
 
+    hashifyUrl = function (value) {
+      return 'http://hashify.me/' + Hashify.encode(value);
+    },
+
     heading_ = function () {
       var
         increment, len, matches, offset = 0, start, text,
@@ -396,6 +400,12 @@
 
       el.onkeypress = bind(keypress_, editor);
 
+      if (preview !== false) {
+        el.onkeyup = function () {
+          preview.href = hashifyUrl(this.value);
+        };
+      }
+
       toolbar = document.createElement('ul');
       toolbar.className = classNamePrefix + '-toolbar';
       createButton = bind(createButton_, toolbar, bind(callback_ || function () {}, el));
@@ -523,10 +533,7 @@
         preview.className = classNamePrefix + '-preview';
         preview.innerHTML = 'Preview at hashify.me';
         preview.onclick = function () {
-          window.open(
-            'http://hashify.me/' + Hashify.encode(el.value),
-            'hashify.me'
-          );
+          window.open(hashifyUrl(el.value), 'hashify.me');
           return false;
         };
         container.insertBefore(preview, el.nextSibling);
