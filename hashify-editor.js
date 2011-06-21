@@ -9,7 +9,7 @@
 /*  https://github.com/hashify/hashify-editor
 */
 
-;(function (window, undef) {
+;(function (window) {
 
   var
 
@@ -369,7 +369,7 @@
     el.value = text;
     el.scrollTop = position;
 
-    if (start !== undef) {
+    if (start !== void 0) {
       this.range(start, end);
     }
     el.focus();
