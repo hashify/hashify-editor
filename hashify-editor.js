@@ -25,9 +25,9 @@
 
     classNamePrefix = 'hashify-editor',
 
-    nativeBind = Function.prototype.bind,
+    nativeBind = function(){}.bind,
 
-    slice = Array.prototype.slice,
+    slice = [].slice,
 
     addEvent = function (el, type, handler) {
       if (el.addEventListener) el.addEventListener(type, handler, false);
