@@ -25,6 +25,12 @@
 
     classNamePrefix = 'hashify-editor',
 
+    // [http://stackoverflow.com/questions/6148393]
+    lineBreak = (function (div) {
+      div.innerHTML = '<textarea>%\n%</textarea>';
+      return /%(\s+)%/.exec(div.firstChild.value)[1];
+    }(document.createElement('div'))),
+
     nativeBind = function(){}.bind,
 
     slice = [].slice,
@@ -110,6 +116,18 @@
         start + text.length
       );
       return false;
+    },
+
+    keydown_ = function (event) {
+      if ((event || window.event).keyCode === 13) {
+        var
+          selection = new Selection(this),
+          before = selection.before;
+
+        before += lineBreak + /^([ \t]*).*(?![\s\S])/m.exec(before)[1];
+        this.set(before + selection.after, before.length);
+        return false;
+      }
     },
 
     keypress_ = function (event) {
@@ -398,6 +416,7 @@
         resolve,
         toolbar;
 
+      el.onkeydown = bind(keydown_, editor);
       el.onkeypress = bind(keypress_, editor);
 
       if (preview !== false) {
