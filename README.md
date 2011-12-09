@@ -3,6 +3,8 @@
 Hashify Editor turns any `textarea` into a capable [Markdown][1] editor. It's
 similar to John Fraser's [wmd][2], but more modular and much lighter weight.
 
+![Hashify Editor][3]
+
 
 ## API
 
@@ -28,7 +30,7 @@ Boolean which determines whether the "preview" link is included. Defaults to
 ##### `callback`
 
 Function to be invoked every time Hashify Editor handles an event. Within the
-function, `this` refers to the `textarea`. [Hashify][3], for example, uses a
+function, `this` refers to the `textarea`. [Hashify][4], for example, uses a
 callback to update the URL with each keystroke.
 
 #### Example
@@ -58,11 +60,12 @@ Hashify.decode(text)
 
 ## Sites using Hashify Editor
 
-  - [hashify.me][3]
-  - [davidchambersdesign.com][4]
+  - [hashify.me][4]
+  - [davidchambersdesign.com][5]
 
 
 [1]: http://daringfireball.net/projects/markdown/syntax
 [2]: http://code.google.com/p/wmd/
-[3]: http://hashify.me/
-[4]: http://davidchambersdesign.com/
+[3]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor.png
+[4]: http://hashify.me/
+[5]: http://davidchambersdesign.com/
