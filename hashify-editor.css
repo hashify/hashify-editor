@@ -22,12 +22,12 @@
   padding: 0;
 }
 
-.hashify-editor-toolbar>li {
+.hashify-editor-toolbar > li {
   display: block;
   float: left;
 }
 
-.hashify-editor-toolbar>li>a {
+.hashify-editor-toolbar > li > a {
   position: relative;
   display: block;
   width: 24px;
@@ -38,13 +38,13 @@
   cursor: default;
 }
 
-.hashify-editor-toolbar>li>a:focus,
-.hashify-editor-toolbar>li>a:hover {
+.hashify-editor-toolbar > li > a:focus,
+.hashify-editor-toolbar > li > a:hover {
   margin-top: -1px;
   outline: none;
 }
 
-.hashify-editor-toolbar>li>a:active {
+.hashify-editor-toolbar > li > a:active {
   margin-top: 0;
 }
 
@@ -58,7 +58,7 @@
 .hashify-editor-h1          { margin-left: 12px; background-position: -192px; }
 .hashify-editor-hr          {                    background-position: -216px; }
 
-.hashify-editor-toolbar>li>a:before {
+.hashify-editor-toolbar > li > a:before {
   left: -39px;
   top: -23px;
   width: 100px;
@@ -74,7 +74,7 @@
   color: #666;
 }
 
-.hashify-editor-toolbar>li>a:after {
+.hashify-editor-toolbar > li > a:after {
   left: 9px;
   top: 0;
   border: 3px solid transparent;
@@ -82,20 +82,20 @@
   content: "";
 }
 
-.hashify-editor-toolbar>li>a:before,
-.hashify-editor-toolbar>li>a:after {
+.hashify-editor-toolbar > li > a:before,
+.hashify-editor-toolbar > li > a:after {
   position: absolute;
   display: none;
   z-index: 1;
 }
 
-.hashify-editor-toolbar>li>a:focus:before,
-.hashify-editor-toolbar>li>a:focus:after {
+.hashify-editor-toolbar > li > a:focus:before,
+.hashify-editor-toolbar > li > a:focus:after {
   display: block;
 }
 
-.hashify-editor-toolbar>li>a:hover:before,
-.hashify-editor-toolbar>li>a:hover:after {
+.hashify-editor-toolbar > li > a:hover:before,
+.hashify-editor-toolbar > li > a:hover:after {
   display: block;
   z-index: 2;
 }
