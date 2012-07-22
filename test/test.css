@@ -1,0 +1,82 @@
+html {
+  height: 100%;
+  background: #ccb;
+}
+
+body {
+  position: relative;
+  margin: 50px;
+  width: 500px;
+  height: 100%;
+}
+
+#console {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 354px;
+  margin: 0;
+  border-radius: 4px;
+  background: #333;
+  padding: 6px 10px;
+  font: 16px/18px Inconsolata, monospace;
+  color: #ccb;
+  list-style: none;
+  overflow: scroll;
+}
+#console li {
+  min-height: 18px;
+}
+#console b {
+  font-weight: normal;
+}
+#console .prompt {
+  float: left;
+  width: 192px;
+}
+#console .prompt b {
+  color: #ed6;
+}
+#console .result {
+  float: left;
+  width: 288px;
+}
+#console .result:before {
+  content: "// ";
+}
+#console .result.pass {
+  color: #690;
+}
+#console .result.fail {
+  color: #f33;
+}
+#console .result.fail b {
+  background: #f33;
+  color: #fff;
+}
+
+.hashify-editor {
+  position: absolute;
+  bottom: 100px;
+}
+.hashify-editor-preview {
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  color: #333;
+  text-decoration: none;
+}
+.hashify-editor-preview:hover {
+  text-decoration: underline;
+}
+
+#editor {
+  display: block;
+  width: 464px;
+  height: 180px;
+  border-radius: 4px;
+  border: none;
+  padding: 12px 18px;
+  font: 32px/36px Inconsolata, monospace;
+  resize: none;
+}

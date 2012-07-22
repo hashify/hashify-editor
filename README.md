@@ -30,7 +30,7 @@ Boolean which determines whether the "preview" link is included. Defaults to
 ##### `callback`
 
 Function to be invoked every time Hashify Editor handles an event. Within the
-function, `this` refers to the `textarea`. [Hashify][4], for example, uses a
+function, `this` refers to the `textarea`. [Hashify][5], for example, uses a
 callback to update the URL with each keystroke.
 
 #### Example
@@ -58,14 +58,30 @@ Hashify.decode(text)
 ```
 
 
+## Testing changes
+
+Automated testing of behaviour which depends on keyboard events is problematic
+for several reasons. As a result, testing Hashify Editor is currently a manual
+process, albeit a rather pleasant one:
+
+![Hashify Editor test document][4]
+
+Run the following commands to open the above document:
+
+    npm install # install dev dependencies
+    cake server # start the development server
+    open http://localhost:3456
+
+
 ## Sites using Hashify Editor
 
-  - [hashify.me][4]
-  - [davidchambersdesign.com][5]
+  - [hashify.me][5]
+  - [davidchambersdesign.com][6]
 
 
 [1]: http://daringfireball.net/projects/markdown/syntax
 [2]: http://code.google.com/p/wmd/
 [3]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor.png
-[4]: http://hashify.me/
-[5]: http://davidchambersdesign.com/
+[4]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor-test-document.png
+[5]: http://hashify.me/
+[6]: http://davidchambersdesign.com/

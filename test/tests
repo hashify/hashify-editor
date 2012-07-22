@@ -1,0 +1,24 @@
+# Typing "`" should produce a pair of backticks with the caret in
+# between. The second backtick should be overtypeable, even after
+# further typing.
+
+`               ``
+single          `single`
+`               `single`
+
+``              ``
+double          ``double
+`               ``double``
+`               ``double``
+
+
+# Underscores should behave similarly to backticks.
+
+_               __
+single          _single_
+_               _single_
+
+__              __
+double          __double
+_               __double__
+_               __double__
