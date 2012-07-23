@@ -27,8 +27,7 @@ $.get 'test/tests', (tests) ->
   next = ->
     line = tests.shift()
     return unless line?
-    return do next if /^#/.test line
-    line = line.replace /\\(.)/g, '$1'
+    return do next unless line.indexOf '//'
     if /^\s*$/.test line
       initialize = yes
       do next
