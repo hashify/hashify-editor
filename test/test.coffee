@@ -23,12 +23,37 @@ logResult = (actual, expected) ->
 
 $.get 'test/tests', (tests) ->
   tests = tests.split '\n'
+  initialize = yes # next significant line represents initial state?
   next = ->
     line = tests.shift()
     return unless line?
     return do next if /^#/.test line
-    [input, expected] = line.split /[ ]{2,}/
-    if expected
+    line = line.replace /\\(.)/g, '$1'
+    if /^\s*$/.test line
+      initialize = yes
+      do next
+    else if initialize
+      initialize = no
+      start = line.indexOf '|'
+      value = line.substr 0, start
+      other = line.substr start + 1
+      idx = other.lastIndexOf '|'
+      if idx is -1
+        value += other
+      else
+        value += other.substr 0, idx
+        value += other.substr idx + 1
+      $editor.val value
+      $editor[0].setSelectionRange start, Math.max start, start + idx
+      if $console.children().last().html()
+        # Insert a blank line only if the previous line is *not* blank.
+        # This allows consecutive blank lines to be used in the source
+        # file without consecutive blank lines appearing in the output.
+        $console.append '<li>'
+        $console.scrollTop 9e9
+      do next
+    else
+      [match, input, expected] = /^(.+?)[ ]{2,}(.+)$/.exec line
       $console.append "<li><span class=prompt>type #{ b input }</span></li>"
       $console.scrollTop 9e9
       idx = input.length - 1
@@ -46,13 +71,4 @@ $.get 'test/tests', (tests) ->
         logResult $editor.val(), expected
         do next
       $editor.on 'keyup', listener
-    else
-      if $console.children().last().html()
-        # Insert a blank line only if the previous line is *not* blank.
-        # This allows consecutive blank lines to be used in the source
-        # file without consecutive blank lines appearing in the output.
-        $console.append '<li>'
-        $console.scrollTop 9e9
-      $editor.val ''
-      do next
   do next

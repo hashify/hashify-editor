@@ -1,11 +1,40 @@
+# Keyboard event tests
+# ====================
+#
+# Lines beginning with "#" are ignored. Blank lines divide sections. The
+# first line in each section describes a textarea state, the simplest of
+# which is:
+#
+#     |
+#
+# The "|" character represents the caret position. The above depicts an
+# empty textarea. Two "|" characters represent a selection:
+#
+#     foo |bar| baz
+#
+# The above depicts "foo bar baz" with "bar" selected.
+#
+# Each subsequent line in a section contains a pair of values: one
+# representing keyboard input, the other the expected value of the
+# textarea after this input is received. For example:
+#
+#     Hello, |you|!
+#     w               Hello, w!
+#     o               Hello, wo!
+#     r               Hello, wor!
+#     l               Hello, worl!
+#     d               Hello, world!
+
+
 # Typing "`" should produce a pair of backticks with the caret in
 # between. The second backtick should be overtypeable, even after
 # further typing.
-
+|
 `               ``
 single          `single`
 `               `single`
 
+|
 ``              ``
 double          ``double
 `               ``double``
@@ -13,12 +42,38 @@ double          ``double
 
 
 # Underscores should behave similarly to backticks.
-
+|
 _               __
 single          _single_
 _               _single_
 
+|
 __              __
 double          __double
 _               __double__
 _               __double__
+
+
+# Typing "#" should make the selection an h1 (while preserving the
+# selection). Repeating this should demote it to an h2, then an h3,
+# then an h4. Typing "#" a fifth time should remove all four pound
+# signs.
+|heading|
+\#              # heading
+\#              ## heading
+\#              ### heading
+\#              #### heading
+\#              heading
+\#              # heading
+h1              # h1
+
+# The behaviour should be identical if the pound signs are included
+# in the selection. (Typing "#" should drop them from the selection.)
+|# heading|
+\#              ## heading
+h2              ## h2
+
+# Leading whitespace in the selection should be preserved.
+\#| heading|
+\#              ##  heading
+h2              ## h2
