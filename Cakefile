@@ -5,7 +5,7 @@ express = require 'express'
 
 
 task 'server', 'start the development server', ->
-  app = express.createServer()
+  app = express()
   app.get '/favicon.ico', ->
   app.get '/test/test.js', (req, res) ->
     res.contentType 'js'
