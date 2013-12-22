@@ -73,15 +73,8 @@ Run the following commands to open the above document:
     open http://localhost:3456
 
 
-## Sites using Hashify Editor
-
-  - [hashify.me][5]
-  - [davidchambersdesign.com][6]
-
-
 [1]: http://daringfireball.net/projects/markdown/syntax
 [2]: http://code.google.com/p/wmd/
 [3]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor.png
 [4]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor-test-document.png
 [5]: http://hashify.me/
-[6]: http://davidchambersdesign.com/
