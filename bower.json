@@ -1,0 +1,16 @@
+{
+  "name": "hashify-editor",
+  "version": "1.0.0",
+  "main": [
+    "./hashify-editor.js",
+    "./hashify-editor.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "hashify-editor-test-document.png",
+    "hashify-editor.png",
+    "Makefile",
+    "extras/",
+    "test/"
+  ]
+}
