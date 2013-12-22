@@ -68,8 +68,8 @@ process, albeit a rather pleasant one:
 
 Run the following commands to open the above document:
 
-    npm install # install dev dependencies
-    cake server # start the development server
+    make setup  # install dev dependencies
+    make test   # start the development server
     open http://localhost:3456
 
 

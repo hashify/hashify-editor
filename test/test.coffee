@@ -21,7 +21,7 @@ logResult = (actual, expected) ->
     $result.html "expected #{ b expected } not #{ b actual }"
   $console.children().last().append($result)
 
-$.get 'test/tests', (tests) ->
+$.get 'tests', (tests) ->
   tests = tests.split '\n'
   initialize = yes # next significant line represents initial state?
   next = ->

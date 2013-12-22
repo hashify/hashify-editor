@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+var express = require('express');
+
+var PORT = process.env.PORT || '3456';
+var app = express();
+app.use(express.static(__dirname));
+app.listen(PORT, console.log.bind(console, 'listening on port ' + PORT));
