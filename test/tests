@@ -79,4 +79,46 @@ h2              ## h2
 h2              ## h2
 
 
+// Typing "`" should wrap the selection in backticks (while preserving
+// the selection). Repeating this should wrap the selection in another
+// pair of backticks. Typing "`" a third time should remove all four
+// backticks.
+x |y| z
+`               x `y` z
+`               x ``y`` z
+`               x y z
+word            x word z
+
+// The behaviour should be identical if the backticks are included in
+// the selection. (Typing "`" should drop them from the selection.)
+x |`y`| z
+`               x ``y`` z
+var             x ``var`` z
+
+
+// Asterisks behave similarly to backticks when a selection is involved.
+x |y| z
+*               x *y* z
+*               x **y** z
+*               x y z
+word            x word z
+
+x |*y*| z
+*               x **y** z
+word            x **word** z
+
+// Underscores, too, behave similarly to backticks when a selection is
+// involved.
+x |y| z
+_               x _y_ z
+_               x __y__ z
+_               x y z
+word            x word z
+
+// xxx
+x |_y_| z
+_               x __y__ z
+word            x __word__ z
+
+
 // vim:filetype=do
