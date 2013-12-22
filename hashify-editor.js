@@ -40,7 +40,7 @@
       else if (el.attachEvent) el.attachEvent('on'+type, handler);
     },
 
-    // Copied from [Underscore.js](http://documentcloud.github.com/underscore/).
+    // Copied from [Underscore.js](http://underscorejs.org/).
     bind = function (func, obj) {
       if (func.bind === nativeBind && nativeBind) {
         return nativeBind.apply(func, slice.call(arguments, 1));
