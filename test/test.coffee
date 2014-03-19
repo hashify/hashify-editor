@@ -8,17 +8,18 @@ charCode = null
 $editor.keypress (event) -> charCode = event.which
 
 b = (text) ->
-  $div = $('<div>').append $('<b>').text text
-  $div.html()
+  $('<div>')
+  .append $('<b>').text text
+  .html()
 
 logResult = (actual, expected) ->
   $result = $('<span class=result>')
   if actual is expected
     $result.addClass 'pass'
-    $result.html "value is #{ b expected } as expected"
+    $result.html "value is #{b expected} as expected"
   else
     $result.addClass 'fail'
-    $result.html "expected #{ b expected } not #{ b actual }"
+    $result.html "expected #{b expected} not #{b actual}"
   $console.children().last().append($result)
 
 $.get 'tests', (tests) ->
@@ -27,10 +28,10 @@ $.get 'tests', (tests) ->
   next = ->
     line = tests.shift()
     return unless line?
-    return do next unless line.indexOf '//'
+    return next() unless line.indexOf '//'
     if /^\s*$/.test line
       initialize = yes
-      do next
+      next()
     else if initialize
       initialize = no
       start = line.indexOf '|'
@@ -50,10 +51,10 @@ $.get 'tests', (tests) ->
         # file without consecutive blank lines appearing in the output.
         $console.append '<li>'
         $console.scrollTop 9e9
-      do next
+      next()
     else
-      [match, input, expected] = /^(.+?)[ ]{2,}(.+)$/.exec line
-      $console.append "<li><span class=prompt>type #{ b input }</span></li>"
+      [..., input, expected] = /^(.+?)[ ]{2,}(.+)$/.exec line
+      $console.append "<li><span class=prompt>type #{b input}</span></li>"
       $console.scrollTop 9e9
       idx = input.length - 1
       lastChar = input.charAt idx
@@ -68,6 +69,6 @@ $.get 'tests', (tests) ->
         return if event.which is 16 or charCode isnt lastCharCode or count -= 1
         $editor.off 'keyup', listener
         logResult $editor.val(), expected
-        do next
+        next()
       $editor.on 'keyup', listener
-  do next
+  next()
