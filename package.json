@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "coffee-script": "1.7.x",
-    "express": "3.4.x"
+    "express": "3.5.x"
   },
   "engines": {
     "node": ">=0.10.0"
