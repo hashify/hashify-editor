@@ -3,7 +3,7 @@
 Hashify Editor turns any `textarea` into a capable [Markdown][1] editor. It's
 similar to John Fraser's [wmd][2], but more modular and much lighter weight.
 
-![Hashify Editor][3]
+<img alt="Hashify Editor" src="https://raw.github.com/hashify/hashify-editor/master/hashify-editor@2x.png" width="480" height="320" />
 
 
 ## API
@@ -30,7 +30,7 @@ Boolean which determines whether the "preview" link is included. Defaults to
 ##### `callback`
 
 Function to be invoked every time Hashify Editor handles an event. Within the
-function, `this` refers to the `textarea`. [Hashify][5], for example, uses a
+function, `this` refers to the `textarea`. [Hashify][3], for example, uses a
 callback to update the URL with each keystroke.
 
 #### Example
@@ -64,7 +64,7 @@ Automated testing of behaviour which depends on keyboard events is problematic
 for several reasons. As a result, testing Hashify Editor is currently a manual
 process, albeit a rather pleasant one:
 
-![Hashify Editor test document][4]
+<img alt="Hashify Editor test document" src="https://raw.github.com/hashify/hashify-editor/master/hashify-editor-test-document@2x.png" width="722" height="722" />
 
 Run the following commands to open the above document:
 
@@ -75,6 +75,4 @@ Run the following commands to open the above document:
 
 [1]: http://daringfireball.net/projects/markdown/syntax
 [2]: http://code.google.com/p/wmd/
-[3]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor.png
-[4]: https://raw.github.com/hashify/hashify-editor/master/hashify-editor-test-document.png
-[5]: http://hashify.me/
+[3]: http://hashify.me/
