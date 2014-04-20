@@ -1,6 +1,7 @@
 {
   "name": "hashify-editor",
   "version": "1.0.1",
+  "private": true,
   "description": "Turn any textarea into a Markdown editor, with one-click previewing via hashify.me",
   "author": "David Chambers <dc@davidchambers.me>",
   "licenses": [{

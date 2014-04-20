@@ -35,8 +35,14 @@ release-major: LEVEL = major
 release-minor: LEVEL = minor
 release-patch: LEVEL = patch
 
-release-major release-minor release-patch:
-	@$(XYZ) --increment $(LEVEL)
+release-major release-minor release-patch: tmp/bin/npm
+	# Use a dummy npm executable so `npm publish` is a no-op.
+	@PATH='tmp/bin:$(PATH)' $(XYZ) --increment $(LEVEL)
+
+tmp/bin/npm:
+	mkdir -p '$(@D)'
+	>'$@'
+	chmod +x '$@'
 
 
 .PHONY: setup

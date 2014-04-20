@@ -12,6 +12,7 @@
     "Makefile",
     "extras/",
     "src/",
-    "test/"
+    "test/",
+    "tmp/"
   ]
 }
