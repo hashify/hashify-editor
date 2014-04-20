@@ -1,17 +1,14 @@
 COFFEE = node_modules/.bin/coffee
+XYZ = node_modules/.bin/xyz --message X.Y.Z --tag X.Y.Z
 
 
-.PHONY: release
-release:
-ifndef VERSION
-	$(error VERSION is undefined)
-endif
-ifneq ($(shell git diff-index --quiet HEAD; echo $$?), 0)
-	$(error dirty index)
-endif
-	sed -i '' 's!\("version": "\)[^"]*\("\)!\1$(VERSION)\2!' bower.json package.json
-	git commit --all --message $(VERSION)
-	git tag $(VERSION)
+.PHONY: release-major release-minor release-patch
+release-major: LEVEL = major
+release-minor: LEVEL = minor
+release-patch: LEVEL = patch
+
+release-major release-minor release-patch:
+	@$(XYZ) --increment $(LEVEL)
 
 
 .PHONY: setup
