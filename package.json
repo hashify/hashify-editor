@@ -1,13 +1,15 @@
 {
   "name": "hashify-editor",
-  "version": "1.0.1",
+  "version": "1.5.0",
   "private": true,
   "description": "Turn any textarea into a Markdown editor, with one-click previewing via hashify.me",
   "author": "David Chambers <dc@davidchambers.me>",
-  "licenses": [{
-    "type": "BSD",
-    "url": "https://raw.github.com/hashify/hashify-editor/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://raw.github.com/hashify/hashify-editor/master/LICENSE"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/hashify/hashify-editor.git"
