@@ -7,10 +7,11 @@
   ],
   "ignore": [
     "**/.*",
-    "hashify-editor-test-document.png",
-    "hashify-editor.png",
+    "hashify-editor-test-document@2x.png",
+    "hashify-editor@2x.png",
     "Makefile",
     "extras/",
+    "src/",
     "test/"
   ]
 }
