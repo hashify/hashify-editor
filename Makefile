@@ -1,6 +1,34 @@
 COFFEE = node_modules/.bin/coffee
 XYZ = node_modules/.bin/xyz --message X.Y.Z --tag X.Y.Z
 
+CSS = $(patsubst src/%,%,$(shell find src -name '*.css'))
+IMAGES = $(shell find src/images -name '*.coffee')
+
+
+.PHONY: all
+all: $(CSS)
+
+%.css: tmp/%.sh $(IMAGES)
+	'$<' >'$@'
+
+tmp/%.sh: src/%.css
+	mkdir -p '$(@D)'
+	>'$@'
+	@while IFS='' read -r line ; do \
+		grep --quiet '^!' <<<"$$line" ; \
+		if [ "$$?" = 0 ] ; then \
+			sed 's/^!//' <<<"$$line" >>'$@' ; \
+		else \
+			echo "echo '$$(sed s/\'/\'\\\\\'\'/g <<<"$$line")'" >>'$@' ; \
+		fi \
+	done <'$<'
+	chmod +x '$@'
+
+
+.PHONY: clean
+clean:
+	rm -f -- $(CSS)
+
 
 .PHONY: release-major release-minor release-patch
 release-major: LEVEL = major

@@ -1,0 +1,120 @@
+! #!/usr/bin/env bash
+! set -e
+/*
+/*  ###   ###
+/*  ###   ###  Hashify Editor
+/*  #########  ==============
+/*  #########
+/*  ###   ###  Turn any textarea into a Markdown editor,
+/*  ###   ###  with one-click previewing via hashify.me.
+/*
+/*  https://github.com/hashify/hashify-editor
+*/
+! COFFEE=node_modules/.bin/coffee
+!
+! function border_radius {
+!   echo "  -webkit-border-radius: $1;"
+!   echo "  -moz-border-radius: $1;"
+!   echo "  border-radius: $1;"
+! }
+
+.hashify-editor {
+  position: relative;
+  padding-top: 36px;
+}
+
+.hashify-editor-toolbar {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.hashify-editor-toolbar > li {
+  display: block;
+  float: left;
+}
+
+.hashify-editor-toolbar > li > a {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  text-indent: -9999px;
+  text-decoration: none;
+  cursor: default;
+}
+
+.hashify-editor-toolbar > li > a:focus,
+.hashify-editor-toolbar > li > a:hover {
+  margin-top: -1px;
+  outline: none;
+}
+
+.hashify-editor-toolbar > li > a:active {
+  margin-top: 0;
+}
+
+! coffee_to_svg() {
+!   "$COFFEE" src/create-svg.coffee "$@"
+! }
+!
+! formatters=(strong em img a blockquote pre-code ol ul h1 hr)
+! for idx in "${!formatters[@]}" ; do
+!   formatter="${formatters[$idx]}"
+!   echo ".hashify-editor-${formatter} {"
+!   [[ $(($idx % 2)) = 0 && (($idx > 0)) ]] && echo "  margin-left: 12px;"
+!   svg="$(coffee_to_svg "src/images/${formatter}.coffee" | base64)"
+!   echo "  background-image: url('data:image/svg+xml;base64,$svg');"
+!   echo "}"
+! done
+
+.hashify-editor-toolbar > li > a:before {
+  left: -39px;
+  top: -23px;
+  width: 100px;
+! border_radius 3px
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  text-indent: 0;
+  content: attr(data-title);
+  font: 12px/1.75 "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+  color: #666;
+}
+
+.hashify-editor-toolbar > li > a:after {
+  left: 9px;
+  top: 0;
+  border: 3px solid transparent;
+  border-top-color: #ccc;
+  content: "";
+}
+
+.hashify-editor-toolbar > li > a:before,
+.hashify-editor-toolbar > li > a:after {
+  position: absolute;
+  display: none;
+  z-index: 1;
+}
+
+.hashify-editor-toolbar > li > a:focus:before,
+.hashify-editor-toolbar > li > a:focus:after {
+  display: block;
+}
+
+.hashify-editor-toolbar > li > a:hover:before,
+.hashify-editor-toolbar > li > a:hover:after {
+  display: block;
+  z-index: 2;
+}
+
+.hashify-editor-preview {
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  line-height: 24px;
+}
