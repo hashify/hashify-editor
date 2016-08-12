@@ -18,7 +18,7 @@
     "coffee-script": "1.7.x",
     "express": "3.5.x",
     "orthogonal": "0.1.x",
-    "xyz": "0.3.x"
+    "xyz": "1.0.x"
   },
   "engines": {
     "node": ">=0.10.0"

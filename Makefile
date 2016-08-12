@@ -1,5 +1,5 @@
 COFFEE = node_modules/.bin/coffee
-XYZ = node_modules/.bin/xyz --message X.Y.Z --tag X.Y.Z
+XYZ = node_modules/.bin/xyz --message X.Y.Z --tag X.Y.Z --repo git@github.com:hashify/hashify-editor.git
 
 CSS = $(patsubst src/%,%,$(shell find src -name '*.css'))
 IMAGES = $(shell find src/images -name '*.coffee')
@@ -31,13 +31,9 @@ clean:
 
 
 .PHONY: release-major release-minor release-patch
-release-major: LEVEL = major
-release-minor: LEVEL = minor
-release-patch: LEVEL = patch
-
 release-major release-minor release-patch: tmp/bin/npm
 	# Use a dummy npm executable so `npm publish` is a no-op.
-	@PATH='tmp/bin:$(PATH)' $(XYZ) --increment $(LEVEL)
+	@PATH='tmp/bin:$(PATH)' $(XYZ) --increment $(@:release-%=%)
 
 tmp/bin/npm:
 	mkdir -p '$(@D)'
